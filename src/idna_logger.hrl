@@ -1,7 +1,14 @@
--ifdef('OTP_RELEASE').
+-ifdef(OTP_RELEASE).
+-if (?OTP_RELEASE >= 21).
 -include_lib("kernel/include/logger.hrl").
--else.
+-endif.
+-endif.
+-ifndef(LOG_INFO).
 -define(LOG_INFO(Format, Args), error_logger:info_msg(Format, Args)).
+-endif.
+-ifndef(LOG_ERROR).
 -define(LOG_ERROR(Format, Args), error_logger:error_msg(Format, Args)).
+-endif.
+-ifndef(LOG_WARNING).
 -define(LOG_WARNING(Format, Args), error_logger:warning_msg(Format, Args)).
 -endif.
